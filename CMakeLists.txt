@@ -10,21 +10,11 @@ option(USE_FALLBACK_OPENSSL "Use internal mirror if system OpenSSL lacks Config"
 
 include(FetchContent)
 
-# IMPORTANT: if there is error in FIND_PACKAGE(OpenSSL REQUIRED CONFIG) of downloaded library octo-encryption-cppd
-# you can fix your local installation of the OpenSSL package or use cloned repo with FIND_PACKAGE(OpenSSL REQUIRED) instead
-if(USE_FALLBACK_OPENSSL)
-    FetchContent_Declare(
+FetchContent_Declare(
             octo-encryption-cpp
             GIT_REPOSITORY https://github.com/ofiriluz/octo-encryption-cpp.git
             GIT_TAG        8c4a99b29672a33aba766c27e1250ad18c0f0d14
     )
-else()
-    FetchContent_Declare(
-            octo-encryption-cpp
-            GIT_REPOSITORY https://nech.asuscomm.com/artem/octo-encryption-cpp.git
-            GIT_TAG        main
-    )
-endif()
 
 FetchContent_MakeAvailable(octo-encryption-cpp)
 
